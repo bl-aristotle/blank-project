@@ -29,11 +29,11 @@ export default function NavBar() {
     }, [])
 
     return (
-        <nav className="bg-gray-100 py-4">
+        <nav className="bg-gray-200 py-4 relative">
             <div className="mx-auto px-4 lg:px-10 flex items-center justify-between">
                 <Link href="/" className="text-2xl font-bold">
-                    <span className="text-gray-400">LUXE</span>
-                    <span className="text-gray-700">LIVING</span>
+                    <span className="text-gray-400">THE</span>
+                    <span className="text-gray-700">EVELYN</span>
                 </Link>
                 
                 {/* Desktop Navigation */}
@@ -61,7 +61,7 @@ export default function NavBar() {
                 
                 {/* Mobile Menu */}
                 {isMenuOpen && (
-                    <div className="md:hidden absolute top-20 right-0 w-full bg-gray-100 z-50 shadow-lg">
+                    <div className="md:hidden absolute top-full left-0 w-full bg-gray-100 shadow-lg">
                         <div className="flex flex-col items-center space-y-4 py-4">
                             <Link 
                                 href="/floorplans" 

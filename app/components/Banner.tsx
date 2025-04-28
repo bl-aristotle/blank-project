@@ -17,7 +17,7 @@ export default function Banner() {
 
 
   return (
-    <div className="hidden sm:flex justify-end bg-gray-400 pt-2 pb-2 pr-16 text-gray-200 gap-2">
+    <div className="flex justify-evenly md:justify-end bg-white pt-2 pb-2 md:pr-16 text-gray-400 gap-2">
         <a href="tel:123-456-7890" className={` ${montserrat.className}`}>123-456-7890</a>
         <span className={`${montserrat.className}`}> | </span>
         <Link href="/specials" className={`italic ${montserrat.className}`}>VIEW LEASING SPECIALS</Link>
