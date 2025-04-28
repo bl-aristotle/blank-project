@@ -1,3 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.animate-content {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+  }
+
+  .mobile-menu {
+    transition: transform 0.2s ease-out;
+  }
+
+  .content-spacing {
+    scroll-margin-top: 100px; /* Helps with anchor links */
+  }
+  
+  @layer components {
+    .floorplan-grid {
+      @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+    }
+  }
+
+  /* Prevent touch delay on mobile */
+html {
+    touch-action: manipulation;
+  }
+  
+  /* Ensure buttons are properly interactive */
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Debug styles (remove after fixing) */
+  .debug-outline * {
+    outline: 1px solid red;
+  }
+
+  body {
+    font-family: var(--font-montserrat), sans-serif;
+  }

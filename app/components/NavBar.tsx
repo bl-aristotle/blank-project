@@ -14,31 +14,43 @@ export default function NavBar({ isMenuOpen, toggleMenu }: NavBarProps) {
     <nav className="bg-gray-200 py-4 relative z-50">
       <div className="mx-auto px-4 lg:px-10 flex items-center justify-between">
                 <Link href="/" className="text-2xl font-bold">
-                    <span className="text-gray-400">THE</span>
-                    <span className="text-gray-700">EVELYN</span>
+                    <span className={`text-stone-400 ${montserrat.className}`}>THE</span>
+                    <span className={`text-stone-600 ${montserrat.className}`}>EVELYN</span>
                 </Link>
                 
                 {/* Desktop Navigation */}
-                <div className="hidden md:flex gap-6 lg:gap-8 xl:gap-12 items-center">
-                    <Link href="/floorplans" className={`text-gray-800 ${montserrat.className}`}>FLOORPLANS</Link>
-                    <Link href="/gallery" className={`text-gray-800 ${montserrat.className}`}>GALLERY</Link>
-                    <Link href="/amenities" className={`text-gray-800 ${montserrat.className}`}>AMENITIES</Link>
-                    <Link href="/contact" className={`text-gray-800 ${montserrat.className}`}>CONTACT</Link>
-                    <button className={`px-4 py-2 rounded-full bg-white text-black`}>
+                <div className="hidden md:flex gap-4 lg:gap-8 xl:gap-12 items-center">
+                    <Link href="/floorplans" className={`text-stone-600 ${montserrat.className}`}>FLOORPLANS</Link>
+                    <Link href="/gallery" className={`text-stone-600 ${montserrat.className}`}>GALLERY</Link>
+                    <Link href="/amenities" className={`text-stone-600 ${montserrat.className}`}>AMENITIES</Link>
+                    <Link href="/contact" className={`text-stone-600 ${montserrat.className}`}>CONTACT</Link>
+                    <button className={`px-4 py-2 rounded-full bg-stone-50 text-stone-600 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]  ${montserrat.className}`}>
                         SCHEDULE TOUR
                     </button>
                 </div>
                 
                 {/* Mobile Menu Button */}
-                <button 
-                    className="md:hidden btn btn-square btn-ghost pl-4"
-                    onClick={toggleMenu}
-                    aria-label="Toggle menu"
-                    aria-expanded={isMenuOpen}
+                <button
+                  className="md:hidden p-4 focus:outline-none"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    e.stopPropagation()
+                    console.log('Button clicked') // Debugging
+                    toggleMenu()
+                  }}
+                  aria-label="Toggle menu"
                 >
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block h-10 w-10 stroke-current"> 
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path> 
-                    </svg>
+                  <div className="w-6 h-6 relative">
+                    <span className={`absolute left-0 top-1/2 w-full h-0.5 bg-black transform transition ${
+                      isMenuOpen ? 'rotate-45 translate-y-0' : '-translate-y-1'
+                    }`}></span>
+                    <span className={`absolute left-0 top-1/2 w-full h-0.5 bg-black transform transition ${
+                      isMenuOpen ? 'opacity-0' : ''
+                    }`}></span>
+                    <span className={`absolute left-0 top-1/2 w-full h-0.5 bg-black transform transition ${
+                      isMenuOpen ? '-rotate-45 translate-y-0' : 'translate-y-1'
+                    }`}></span>
+                  </div>
                 </button>
                 
                 {/* Mobile Menu */}

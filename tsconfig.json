@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    
     "target": "ES2017",
     "lib": [
       "dom",
@@ -18,7 +19,7 @@
     "jsx": "preserve",
     "incremental": true,
     "types": [
-      "tailwindcss"
+      "tailwindcss", "node"
     ],
     "paths": {
       "@/*": [
