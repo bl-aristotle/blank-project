@@ -20,7 +20,7 @@ export default function NavBar({ isMenuOpen, toggleMenu }: NavBarProps) {
                 
                 {/* Desktop Navigation */}
                 <div className="hidden md:flex gap-4 lg:gap-8 xl:gap-12 items-center">
-                    <Link href="/floorplans" className={`text-stone-600 ${montserrat.className}`}>FLOORPLANS</Link>
+                    <Link href="/floorplans" className={`text-stone-600 ${montserrat.className} hover:text-blue-600 transition`}>FLOORPLANS</Link>
                     <Link href="/gallery" className={`text-stone-600 ${montserrat.className}`}>GALLERY</Link>
                     <Link href="/amenities" className={`text-stone-600 ${montserrat.className}`}>AMENITIES</Link>
                     <Link href="/contact" className={`text-stone-600 ${montserrat.className}`}>CONTACT</Link>
