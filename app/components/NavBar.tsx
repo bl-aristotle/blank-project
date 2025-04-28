@@ -1,36 +1,18 @@
 'use client'
-
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
 import { Montserrat } from 'next/font/google'
 
 const montserrat = Montserrat({ subsets: ['latin'] })
 
-export default function NavBar() {
-    const [isMenuOpen, setIsMenuOpen] = useState(false)
+interface NavBarProps {
+  isMenuOpen: boolean;
+  toggleMenu: () => void;
+}
 
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen)
-    }
-
-    useEffect(() => {
-        const handleResize = () => {
-            // Close menu if window width is greater than or equal to md breakpoint (768px)
-            if (window.innerWidth >= 768) {
-                setIsMenuOpen(false)
-            }
-        }
-
-        // Add event listener
-        window.addEventListener('resize', handleResize)
-
-        // Clean up
-        return () => window.removeEventListener('resize', handleResize)
-    }, [])
-
-    return (
-        <nav className="bg-gray-200 py-4 relative">
-            <div className="mx-auto px-4 lg:px-10 flex items-center justify-between">
+export default function NavBar({ isMenuOpen, toggleMenu }: NavBarProps) {
+  return (
+    <nav className="bg-gray-200 py-4 relative z-50">
+      <div className="mx-auto px-4 lg:px-10 flex items-center justify-between">
                 <Link href="/" className="text-2xl font-bold">
                     <span className="text-gray-400">THE</span>
                     <span className="text-gray-700">EVELYN</span>
