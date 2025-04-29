@@ -8,15 +8,25 @@ datasource db {
 }
 
 model Floorplan {
-  id          String   @id @default(cuid())
-  name        String
-  bedrooms    Int
-  bathrooms   Float
-  sqft        Int
-  price       Float
-  available   Boolean  @default(true)
-  imageUrl    String
-  features    String   // Store as JSON string instead
-  unitCount   Int
-  updatedAt   DateTime @updatedAt
+  id        String   @id @default(cuid())
+  name      String
+  bedrooms  Int
+  bathrooms Float
+  sqft      Int
+  price     Float
+  available Boolean  @default(true)
+  imageUrl  String
+  features  String // Store as JSON string instead
+  unitCount Int
+  updatedAt DateTime @updatedAt
+  Unit      Unit[]
+}
+
+model Unit {
+  id          String    @id @default(cuid())
+  unitNumber  String    @unique
+  floor       Int
+  status      String    @default("AVAILABLE")
+  floorplan   Floorplan @relation(fields: [floorplanId], references: [id])
+  floorplanId String // This is the actual foreign key column
 }
