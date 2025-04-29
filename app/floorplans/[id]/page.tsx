@@ -31,21 +31,14 @@ export default async function FloorplanDetailPage({ params }: Params) {
   return (
     <main className="py-16">
       <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-bold mb-6">{parsedFloorplan.name}</h1>
+        <h1 className="text-3xl font-bold mb-2">{parsedFloorplan.name}</h1>
         
         {/* Basic Info */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           <div>
-            <img
-              src={parsedFloorplan.imageUrl}
-              alt={parsedFloorplan.name}
-              className="w-full h-auto rounded-lg"
-            />
-          </div>
-          <div>
-            <div className="flex gap-4 text-lg mb-4">
+            <div className="flex gap-8 text-lg mb-4">
               <span>{parsedFloorplan.bedrooms === 0 ? 'Studio' : `${parsedFloorplan.bedrooms} BR`}</span>
-              <span>{parsedFloorplan.bathrooms} BA</span>
+              <span>{parsedFloorplan.bathrooms} Bathroom</span>
               <span>{parsedFloorplan.sqft.toLocaleString()} sqft</span>
             </div>
             <p className="text-2xl font-semibold mb-6">${parsedFloorplan.price.toLocaleString()}/mo</p>
@@ -62,6 +55,14 @@ export default async function FloorplanDetailPage({ params }: Params) {
               </ul>
             </div>
           </div>
+          <div>
+            <img
+              src={parsedFloorplan.imageUrl}
+              alt={parsedFloorplan.name}
+              className="w-full h-auto rounded-lg"
+            />
+          </div>
+
         </div>
 
         {/* Available Units Section */}
