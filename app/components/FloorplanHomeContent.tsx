@@ -1,9 +1,9 @@
+// app/components/FloorplanHomeContent.tsx
 'use client'
 import { useEffect, useState } from 'react'
 import type { Floorplan } from '@prisma/client'
 import FloorplanTeaser from './FloorplanTeaser'
 
-// Define the type with parsed features
 type FloorplanWithFeatures = Floorplan & {
   features: string[]
 }
@@ -15,7 +15,7 @@ export default function FloorplanHomeContent() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('/api/floorplans')
+        const res = await fetch('/api/floorplans?limit=3') // Only fetch 3
         const data = await res.json()
         setFloorplans(data.map((plan: Floorplan) => ({
           ...plan,
