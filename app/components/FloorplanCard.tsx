@@ -2,17 +2,13 @@
 'use client'
 import Link from 'next/link'
 import type { Floorplan } from '@/types'
+import CardImage from './CardImage'
 
 export default function FloorplanCard({ plan }: { plan: Floorplan }) {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-      <div className="h-48 bg-gray-200 relative">
-        <img
-          src={plan.imageUrl}
-          alt={plan.name}
-          className="w-full h-full object-cover"
-          loading="lazy"
-        />
+      <div className="w-full aspect-square"> {/* Square container */}
+        <CardImage src={plan.imageUrl} alt={plan.name} />
       </div>
       <div className="p-6">
         <h3 className="text-xl font-bold mb-2">{plan.name}</h3>

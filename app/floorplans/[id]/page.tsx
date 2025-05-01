@@ -2,6 +2,7 @@
 import prisma from '@/lib/prisma'
 import { notFound } from 'next/navigation'
 import type { Floorplan } from '@/types'
+import DetailsImage from '../../components/DetailsImage'
 
 interface Params {
   params: {
@@ -34,7 +35,7 @@ export default async function FloorplanDetailPage({ params }: Params) {
         <h1 className="text-3xl font-bold mb-2">{parsedFloorplan.name}</h1>
         
         {/* Basic Info */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
           <div>
             <div className="flex gap-8 text-lg mb-4">
               <span>{parsedFloorplan.bedrooms === 0 ? 'Studio' : `${parsedFloorplan.bedrooms} BR`}</span>
@@ -55,14 +56,9 @@ export default async function FloorplanDetailPage({ params }: Params) {
               </ul>
             </div>
           </div>
-          <div>
-            <img
-              src={parsedFloorplan.imageUrl}
-              alt={parsedFloorplan.name}
-              className="w-full h-auto rounded-lg"
-            />
-          </div>
-
+           <div>
+              < DetailsImage src={parsedFloorplan.imageUrl} alt={parsedFloorplan.name} />
+           </div>
         </div>
 
         {/* Available Units Section */}
