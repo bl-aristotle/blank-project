@@ -11,18 +11,20 @@ export default function FloorplanCard({ plan }: { plan: Floorplan }) {
         <CardImage src={plan.imageUrl} alt={plan.name} />
       </div>
       <div className="p-6">
-        <h3 className="text-xl font-bold mb-2">{plan.name}</h3>
-        <div className="flex gap-4 text-sm text-gray-600 mb-4">
+      <h3 className="text-xl font-medium mb-1">{plan.name}</h3>
+        <div className="flex gap-4 text-sm text-stone-600 mb-1 justify-left">
           <span>{plan.bedrooms === 0 ? 'Studio' : `${plan.bedrooms} BR`}</span>
+          <span> | </span>
           <span>{plan.bathrooms} BA</span>
+          <span> | </span>
           <span>{plan.sqft.toLocaleString()} sqft</span>
         </div>
-        <p className="text-2xl font-semibold mb-4">${plan.price.toLocaleString()}/mo</p>
+        <p className="text-sm font-semibold mb-4">Rent: ${plan.price.toLocaleString()}</p>
         <Link
           href={`/floorplans/${plan.id}`}
-          className="block w-full text-center bg-gray-900 text-white py-2 rounded hover:bg-gray-800 transition"
+          className="block w-full text-center bg-stone-700 text-white py-2 rounded hover:bg-stone-800 transition"
         >
-          View Details
+          {plan.unitCount.toLocaleString()} Available
         </Link>
       </div>
     </div>
