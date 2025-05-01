@@ -18,7 +18,7 @@ export default async function FloorplansPage() {
 
   return (
     <main className="bg-stone-100">
-      <div className="container mx-auto px-4 py-4">
+      <div className="container mx-auto px-4 py-6">
       <div className="text-center mx-auto px-4 max-w-3xl">
   <h2 className={`text-2xl font-bold mb-2 text-stone-600 ${montserrat.className}`}>Experience Luxury Living at The Evelyn</h2>
   <p className="text-md text-stone-600 mb-4">

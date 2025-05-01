@@ -3,35 +3,40 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 
-export default function DetailsImage({ src, alt }: { src: string; alt: string }) {
-    const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
+interface DetailsImageProps {
+  src: string
+  alt: string
+  className?: string
+}
 
-    useEffect(() => {
-        const img = new window.Image()
-        img.src = src
-        img.onload = () => {
-          setDimensions({
-            width: img.width,
-            height: img.height
-          })
-        }
-      }, [src])
+export default function DetailsImage({ src, alt, className = '' }: DetailsImageProps) {
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
 
-      const isLandscape = dimensions.width > dimensions.height
+  useEffect(() => {
+    const img = new window.Image()
+    img.src = src
+    img.onload = () => {
+      setDimensions({
+        width: img.width,
+        height: img.height
+      })
+    }
+  }, [src])
 
+  const isLandscape = dimensions.width > dimensions.height
 
-    return (
-        <div className={`relative mx-auto ${isLandscape ? 'w-3/4 aspect-video' : 'w-1/2 aspect-[3/4]'}`}>
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          className="object-contain"
-          style={{
-            margin: 'auto' // Centers the image
-          }}
-          sizes="(max-width: 768px) 100vw, 50vw"
-        />
-      </div>
-    )
-  }
+  return (
+    <div className={`relative mx-auto ${isLandscape ? 'w-full aspect-video' : 'w-full aspect-[3/4]'} ${className}`}>
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        className="object-contain"
+        style={{
+          margin: 'auto' // Centers the image
+        }}
+        sizes="(max-width: 768px) 100vw, 33vw"
+      />
+    </div>
+  )
+}
