@@ -30,3 +30,11 @@ model Unit {
   floorplan   Floorplan @relation(fields: [floorplanId], references: [id])
   floorplanId String // This is the actual foreign key column
 }
+
+model GalleryImage {
+  id        String   @id @default(cuid())
+  url       String
+  name      String
+  type      String   // "AMENITY" or "INTERIOR"
+  createdAt DateTime @default(now())
+}

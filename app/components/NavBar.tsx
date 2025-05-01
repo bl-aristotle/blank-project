@@ -21,7 +21,20 @@ export default function NavBar({ isMenuOpen, toggleMenu }: NavBarProps) {
                 {/* Desktop Navigation */}
                 <div className="hidden md:flex gap-4 lg:gap-8 xl:gap-12 items-center">
                     <Link href="/floorplans" className={`text-stone-600 ${montserrat.className} hover:text-blue-600 transition`}>FLOORPLANS</Link>
-                    <Link href="/gallery" className={`text-stone-600 ${montserrat.className}`}>GALLERY</Link>
+                    <Link
+                      href="/gallery"
+                      onClick={(e) => {
+                        // Only force reload if the navigation hasn't happened after 1s
+                        const timer = setTimeout(() => {
+                          window.location.href = "/gallery";
+                        }, 1000);
+                        // Clean up the timer if navigation succeeds
+                        return () => clearTimeout(timer);
+                      }}
+                      className={`text-stone-600 ${montserrat.className} hover:text-blue-600 transition`}
+                    >
+                      GALLERY
+                    </Link>
                     <Link href="/amenities" className={`text-stone-600 ${montserrat.className}`}>AMENITIES</Link>
                     <Link href="/contact" className={`text-stone-600 ${montserrat.className}`}>CONTACT</Link>
                     <button className={`px-4 py-2 rounded-full bg-stone-50 text-stone-600 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]  ${montserrat.className}`}>
@@ -66,6 +79,7 @@ export default function NavBar({ isMenuOpen, toggleMenu }: NavBarProps) {
                             </Link>
                             <Link 
                                 href="/gallery" 
+                                key="gallery-link" 
                                 className={`text-gray-800 text-lg ${montserrat.className}`}
                                 onClick={toggleMenu}
                             >
