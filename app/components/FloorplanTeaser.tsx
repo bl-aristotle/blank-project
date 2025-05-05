@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import type { Floorplan } from '@prisma/client'
 import FloorplanCard from './FloorplanCard'
 import { Montserrat } from 'next/font/google'
+import Link from 'next/link'
 
 const montserrat = Montserrat({ subsets: ['latin'] })
 
@@ -28,7 +29,7 @@ export default function FloorplanTeaser({ floorplans }: Props) {
         setItemsToShow(1)
         setIsXlView(false)
       }
-      setCurrentIndex(0) // Reset to first item on resize
+      setCurrentIndex(0)
     }
 
     handleResize()
@@ -53,12 +54,21 @@ export default function FloorplanTeaser({ floorplans }: Props) {
   return (
     <section className="py-8 px-4 sm:px-10 bg-stone-300">
       <div className="container mx-auto px-4">
-        <h2 className={`text-3xl mb-8 pt-2 pb-2 text-center text-stone-600 font-semibold ${montserrat.className}`}>
-          FEATURED FLOORPLANS
-        </h2>
+        <div className="text-center mb-8">
+          <h2 className={`text-3xl mb-4 text-stone-600 font-semibold ${montserrat.className}`}>
+            FEATURED FLOORPLANS
+          </h2>
+          <Link 
+            href="/floorplans" 
+            className="inline-block px-6 py-2 bg-stone-600 text-white rounded-md hover:bg-stone-700 transition-colors mb-4"
+          >
+            View All Floorplans
+          </Link>
+        </div>
         
-        <div className="relative flex items-center justify-center gap-4">
-          {/* Previous Button - positioned to the left */}
+        {/* Main container with min-height based on viewport */}
+        <div className="relative min-h-[500px] md:min-h-[450px] xl:min-h-[400px] flex items-center justify-center gap-4">
+          {/* Previous Button */}
           {!isXlView && (
             <button 
               onClick={prevSlide}
@@ -71,22 +81,19 @@ export default function FloorplanTeaser({ floorplans }: Props) {
             </button>
           )}
 
-          {/* Floorplan Grid/Carousel */}
+          {/* Floorplan Cards */}
           <div className={`grid ${
             itemsToShow === 3 ? 'grid-cols-1 md:grid-cols-2 xl:grid-cols-3' : 
             itemsToShow === 2 ? 'grid-cols-2' : 'grid-cols-1'
-          } gap-4 md:gap-6 xl:gap-8 w-full ${
-            itemsToShow === 1 ? 'max-w-md' : 
-            itemsToShow === 2 ? 'max-w-4xl' : 'max-w-7xl'
-          } mx-auto`}>
+          } gap-6 w-full max-w-7xl mx-auto`}>
             {visibleFloorplans.map((plan) => (
-              <div key={plan.id} className="transition-transform duration-300">
-                <FloorplanCard plan={plan} />
+              <div key={plan.id} className="h-full">
+                <FloorplanCard plan={plan} className="h-full" />
               </div>
             ))}
           </div>
 
-          {/* Next Button - positioned to the right */}
+          {/* Next Button */}
           {!isXlView && (
             <button 
               onClick={nextSlide}
@@ -100,9 +107,9 @@ export default function FloorplanTeaser({ floorplans }: Props) {
           )}
         </div>
 
-        {/* Mobile Indicators (only show when 1 item visible) */}
+        {/* Mobile Indicators */}
         {itemsToShow === 1 && (
-          <div className="flex justify-center mt-6 space-x-2">
+          <div className="flex justify-center mt-8 space-x-2">
             {floorplans.map((_, index) => (
               <button
                 key={index}
