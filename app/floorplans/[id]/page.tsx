@@ -38,12 +38,12 @@ export default async function FloorplanDetailPage({ params }: Params) {
         {/* Basic Info */}
         <div className="grid grid-cols-1 lg:grid-cols-8 gap-8 mb-12">
         <div className="lg:col-span-3">
-        <h1 className="text-2xl font-bold mb-4 text-center">{parsedFloorplan.name}</h1>  
+          <h1 className="text-2xl font-bold mb-4 text-center">{parsedFloorplan.name}</h1>
             <FloorplanDetailsCard plan={parsedFloorplan} />
           </div>
+         
           {/* Left content - takes 2 cols (2/3 width) */}
-          <div className="lg:col-span-5">   
-                  
+          <div className="lg:col-span-5 md:ml-10 mt-12">   
             <div className="mb-6">
               <h2 className="text-xl font-semibold mb-2 mt-4">Features</h2>
               <ul className="grid grid-cols-2 gap-2">
@@ -56,44 +56,44 @@ export default async function FloorplanDetailPage({ params }: Params) {
               </ul>
             </div>
              {/* Available Units Section */}
-            <section className="mt-12">
-              <h2 className="text-2xl font-bold mb-6">Available Units</h2>
-              
-              {floorplan.Unit.length > 0 ? (
-                <div className="overflow-x-auto">
-                  {/* Table headers */}
-                  <div className="grid grid-cols-12 gap-4 mb-3 px-4 py-2 bg-gray-100 rounded-t-lg">
-                    <div className="col-span-4 font-semibold">APT</div>
-                    <div className="col-span-3 font-semibold">Floor</div>
-                    <div className="col-span-3 font-semibold">Status</div>
-                    <div className="col-span-2"></div> {/* Empty for button */}
-                  </div>
-                  
-                  {/* Unit rows */}
-                  <div className="space-y-2">
-                    {floorplan.Unit.map((unit) => (
-                      <div 
-                        key={unit.id} 
-                        className="grid grid-cols-12 gap-4 items-center px-4 py-3 border-b hover:bg-gray-50 transition"
-                      >
-                        <div className="col-span-4 font-medium">Unit {unit.unitNumber}</div>
-                        <div className="col-span-3 text-gray-600">{unit.floor}</div>
-                        <div className="col-span-3">
-                          <span className="text-green-600 font-medium">Available Now</span>
-                        </div>
-                        <div className="col-span-2">
-                          <button className="w-full bg-blue-600 text-white py-2 px-3 rounded hover:bg-blue-700 transition text-sm">
-                            Schedule Tour
-                          </button>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ) : (
-                <p className="text-gray-500">No available units for this floorplan at the moment.</p>
-              )}
-            </section>
+             <section className="mt-12">
+  <h2 className="text-2xl font-bold mb-6">Available Units</h2>
+  
+  {floorplan.Unit.length > 0 ? (
+    <div className="overflow-x-auto">
+      {/* Table headers - reduced gap and padding */}
+      <div className="grid grid-cols-12 gap-2 mb-2 px-2 py-2 bg-gray-100 rounded-t-lg">
+        <div className="col-span-3 font-semibold text-sm">APT</div>
+        <div className="col-span-3 font-semibold text-sm">Floor</div>
+        <div className="col-span-3 font-semibold text-sm">Status</div>
+        <div className="col-span-3"></div>
+      </div>
+      
+      {/* Unit rows - tighter spacing */}
+      <div className="space-y-1">
+        {floorplan.Unit.map((unit) => (
+          <div 
+            key={unit.id} 
+            className="grid grid-cols-12 gap-2 items-center px-2 py-2 border-b hover:bg-gray-50 transition"
+          >
+            <div className="col-span-3 font-medium text-sm">Unit {unit.unitNumber}</div>
+            <div className="col-span-3 text-gray-600 text-sm">{unit.floor}</div>
+            <div className="col-span-3">
+              <span className="text-green-600 font-medium text-sm">Available</span>
+            </div>
+            <div className="col-span-3">
+              <button className="w-full md:w-3/4 bg-blue-600 text-white py-1 px-2 rounded hover:bg-blue-700 transition text-xs whitespace-nowrap">
+                Schedule Tour
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  ) : (
+    <p className="text-gray-500">No available units</p>
+  )}
+</section>
           </div>
         </div>
       </div>
