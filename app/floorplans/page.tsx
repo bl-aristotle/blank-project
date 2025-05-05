@@ -20,7 +20,7 @@ export default async function FloorplansPage() {
     <main className="bg-stone-100">
       <div className="container mx-auto px-4 py-6">
       <div className="text-center mx-auto px-4 max-w-3xl">
-  <h2 className={`text-2xl font-bold mb-2 text-stone-600 ${montserrat.className}`}>Experience Luxury Living at The Evelyn</h2>
+  <h2 className={`text-2xl font-bold mb-2 text-stone-600 ${montserrat.className}`}>Floorplans</h2>
   <p className="text-md text-stone-600 mb-4">
     Whether you're seeking a cozy <strong>studio</strong>, spacious <strong>1- or 2-bedroom</strong> layouts,
     or our exclusive <strong>penthouse collection</strong>, every residence is crafted for refined urban living.

@@ -10,7 +10,7 @@ export default function NavBar() {
 
   return (
     <>
-      <nav className="bg-gray-200 py-4">
+      <nav className="bg-stone-200 py-4">
         <div className="mx-auto px-4 lg:px-10 flex items-center justify-between">
           <Link href="/" className="text-2xl font-bold">
             <span className={`text-stone-400 ${montserrat.className}`}>THE</span>

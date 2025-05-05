@@ -3,6 +3,9 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { GalleryCarousel } from '../components/GalleryCarousel'
+import { Montserrat } from 'next/font/google'
+
+const montserrat = Montserrat({ subsets: ['latin'] })
 
 
 type GalleryImage = {
@@ -57,48 +60,51 @@ const mockImages: GalleryImage[] = [
     const closeImage = () => setSelectedImageIndex(null)
   
     return (
-      <main className="py-16">
+      <main className="py-6 bg-stone-100">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold mb-8">Property Gallery</h1>
+        <h2 className={`text-2xl font-bold mb-2 text-stone-600 text-center ${montserrat.className}`}>Property Gallery</h2>
           
-          {/* Filter Buttons */}
-          <div className="flex gap-4 mb-8">
+          
+         {/* Filter Buttons */}
+         <div className="flex justify-center mb-6 mt-6">
+          <div className="flex gap-1 bg-stone-200 p-1 rounded-lg">
             {(['ALL', 'AMENITY', 'INTERIOR'] as const).map((filter) => (
-              <button
+            <button
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
-                className={`px-4 py-2 rounded-full ${
-                  activeFilter === filter
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-200 hover:bg-gray-300'
+                className={`px-6 py-2 rounded-md transition-colors ${
+                   activeFilter === filter
+                    ? 'bg-white shadow-sm text-stone-800 font-medium' 
+                    : 'text-stone-600 hover:bg-stone-100'
                 }`}
               >
-                {filter === 'ALL' ? 'All' : filter.charAt(0) + filter.slice(1).toLowerCase()}
+               {filter === 'ALL' ? 'All' : filter.charAt(0) + filter.slice(1).toLowerCase()}
               </button>
             ))}
           </div>
+        </div>
   
           {/* Image Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-  {filteredImages.map((image, index) => (
-    <div 
-      key={image.id} 
-      className="group overflow-hidden rounded-md shadow-md cursor-pointer hover:shadow-lg transition-all"
-      onClick={() => openImage(index)}
-    >
-      {/* Change this div */}
-      <div className="relative aspect-[3/2]">
-        <Image
-          src={image.url}
-          alt={image.name}
-          fill
-          className="object-cover transition-transform group-hover:scale-105"
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-        />
-      </div>
-    </div>
-  ))}
-</div>
+            {filteredImages.map((image, index) => (
+              <div 
+                key={image.id} 
+                className="group overflow-hidden rounded-md shadow-md cursor-pointer hover:shadow-lg transition-all"
+                onClick={() => openImage(index)}
+              >
+                {/* Change this div */}
+                <div className="relative aspect-[3/2]">
+                  <Image
+                    src={image.url}
+                    alt={image.name}
+                    fill
+                    className="object-cover transition-transform group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
   
         {/* Carousel Modal */}
