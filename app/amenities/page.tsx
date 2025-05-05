@@ -14,7 +14,7 @@ export default function AmenitiesPage() {
     <div className="min-h-screen bg-stone-100">
     <main className="container mx-auto px-4 py-6">
        <ScrollHandler />  
-      <div className="space-y-20">
+      <div className="space-y-8">
         <div id="amenities">
           <AmenitiesSection />
         </div>
@@ -22,7 +22,7 @@ export default function AmenitiesPage() {
         <div id="faq">
           <FAQSection />
         </div>
-        
+
         <div id="neighborhood">
           <NeighborhoodSection />
         </div>

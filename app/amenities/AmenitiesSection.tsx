@@ -88,7 +88,7 @@ export default function AmenitiesPage() {
   const activeCategory = amenityCategories.find(cat => cat.id === activeTab)!
 
   return (
-    <div className="min-h-screen bg-stone-100 bg-white">
+    <div className="bg-stone-100 bg-white pb-12">
       <main className="container mx-auto px-4 py-6 max-w-6xl">
         {/* Header Section */}
         <header className="text-center mb-6">
@@ -115,7 +115,7 @@ export default function AmenitiesPage() {
         </div>
 
         {/* Content Section */}
-        <div className="flex flex-col md:flex-row gap-8 xl:gap-24 mb-12">
+        <div className="flex flex-col md:flex-row gap-8 xl:gap-24">
           {/* Left Column - Image */}
           <div className="md:w-1/2">
             <div className="relative h-80 md:h-[500px] rounded-xl overflow-hidden shadow-md border border-stone-200">

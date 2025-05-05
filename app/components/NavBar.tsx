@@ -179,7 +179,7 @@ export default function NavBar() {
         <div 
           ref={menuRef}
           className={`md:hidden bg-gray-100 z-40 w-full ${
-            isAtTop ? 'relative' : 'fixed top-16 shadow-lg'
+            isAtTop ? 'relative' : 'fixed top-20 shadow-lg'
           }`}
           style={{
             maxHeight: isAtTop ? 'none' : 'calc(100vh - 4rem)',
@@ -189,21 +189,21 @@ export default function NavBar() {
           <div className="flex flex-col items-center space-y-4 py-4 px-4">
             <Link 
               href="/floorplans" 
-              className={`text-gray-800 text-lg ${montserrat.className} w-full text-center py-3`}
+              className={`text-gray-800 text-md ${montserrat.className} w-full text-center py-1`}
               onClick={closeAllDropdowns}
             >
               FLOORPLANS
             </Link>
             <Link
               href="/gallery"
-              className={`text-gray-800 text-lg ${montserrat.className} w-full text-center py-3`}
+              className={`text-gray-800 text-md ${montserrat.className} w-full text-center py-1`}
               onClick={closeAllDropdowns}
             >
               GALLERY
             </Link>
             <Link 
               href="/contact" 
-              className={`text-gray-800 text-lg ${montserrat.className} w-full text-center py-3`}
+              className={`text-gray-800 text-md ${montserrat.className} w-full text-center py-1`}
               onClick={closeAllDropdowns}
             >
               CONTACT
@@ -212,7 +212,7 @@ export default function NavBar() {
             <div className="w-full text-center" ref={moreRef}>
               <button
                 onClick={toggleMoreMobile}
-                className={`text-gray-800 text-lg ${montserrat.className} flex items-center justify-center w-full py-3`}
+                className={`text-gray-800 text-md ${montserrat.className} flex items-center justify-center w-full py-1`}
                 aria-expanded={isMoreOpen}
               >
                 MORE
@@ -233,7 +233,7 @@ export default function NavBar() {
                     <Link
                       key={link.href}
                       href={link.href}
-                      className="block py-3 px-4 text-gray-700 hover:bg-gray-200 transition-colors"
+                      className="block py-1 px-4 text-gray-700 hover:bg-gray-200 transition-colors"
                       onClick={closeAllDropdowns}
                     >
                       {link.label}
