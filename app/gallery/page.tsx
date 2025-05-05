@@ -62,7 +62,7 @@ const mockImages: GalleryImage[] = [
     return (
       <main className="py-6 bg-stone-100">
         <div className="container mx-auto px-4">
-        <h2 className={`text-2xl font-bold mb-2 text-stone-600 text-center ${montserrat.className}`}>Property Gallery</h2>
+        <h2 className={`text-3xl font-bold mb-2 text-stone-600 text-center ${montserrat.className}`}>Property Gallery</h2>
           
           
          {/* Filter Buttons */}

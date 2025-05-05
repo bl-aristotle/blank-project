@@ -68,7 +68,7 @@ export default function ScheduleTourPage() {
       <main className="container mx-auto px-4 py-6 max-w-6xl">
         {/* Header Section */}
         <header className="text-center mb-6">
-          <h2 className={`text-2xl font-bold mb-2 text-stone-600 text-center ${montserrat.className}`}>Schedule a Tour</h2>
+          <h2 className={`text-3xl font-bold mb-2 text-stone-600 text-center ${montserrat.className}`}>Schedule a Tour</h2>
           <p className="text-lg text-stone-600 max-w-2xl mx-auto">
             Experience The Evelyn firsthand. Please fill out the form below to schedule your private tour.
           </p>

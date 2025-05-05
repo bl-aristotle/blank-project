@@ -56,7 +56,7 @@ export default function ContactPage() {
     <main className="container mx-auto px-4 py-6 max-w-6xl">
       {/* Header Section */}
       <header className="text-center mb-6">
-      <h2 className={`text-2xl font-bold mb-2 text-stone-600 text-center ${montserrat.className}`}>Contact The Evelyn</h2>
+      <h2 className={`text-3xl font-bold mb-2 text-stone-600 text-center ${montserrat.className}`}>Contact The Evelyn</h2>
       <p className="text-lg text-stone-600 max-w-2xl mx-auto">
             We'd love to hear from you! Send us a message or visit us in person.
           </p>
