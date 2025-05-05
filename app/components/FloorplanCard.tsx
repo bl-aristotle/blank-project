@@ -4,9 +4,15 @@ import Link from 'next/link'
 import type { Floorplan } from '@/types'
 import CardImage from './CardImage'
 
-export default function FloorplanCard({ plan }: { plan: Floorplan }) {
+interface FloorplanCardProps {
+  plan: Floorplan & { features: string[] }
+  className?: string
+}
+
+
+export default function FloorplanCard({ plan, className }: FloorplanCardProps) {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+    <div className={`bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow ${className || ''}`}>
       <div className="w-full aspect-square"> {/* Square container */}
         <CardImage src={plan.imageUrl} alt={plan.name} />
       </div>

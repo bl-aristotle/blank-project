@@ -1,5 +1,6 @@
+// app/components/FloorplanTeaser.tsx
 'use client'
-
+import { useState, useEffect } from 'react'
 import type { Floorplan } from '@prisma/client'
 import FloorplanCard from './FloorplanCard'
 import { Montserrat } from 'next/font/google'
@@ -11,15 +12,107 @@ interface Props {
 }
 
 export default function FloorplanTeaser({ floorplans }: Props) {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [itemsToShow, setItemsToShow] = useState(3)
+  const [isXlView, setIsXlView] = useState(false)
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1280) {
+        setItemsToShow(3)
+        setIsXlView(true)
+      } else if (window.innerWidth >= 768) {
+        setItemsToShow(2)
+        setIsXlView(false)
+      } else {
+        setItemsToShow(1)
+        setIsXlView(false)
+      }
+      setCurrentIndex(0) // Reset to first item on resize
+    }
+
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex + itemsToShow >= floorplans.length ? 0 : prevIndex + 1
+    )
+  }
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex <= 0 ? floorplans.length - itemsToShow : prevIndex - 1
+    )
+  }
+
+  const visibleFloorplans = floorplans.slice(currentIndex, currentIndex + itemsToShow)
+
   return (
-    <section className="py-8 px-10 bg-stone-300">
+    <section className="py-8 px-4 sm:px-10 bg-stone-300">
       <div className="container mx-auto px-4">
-        <h2 className={`text-3xl mb-8 pt-2 pb-2 text-center text-stone-600 font-semibold ${montserrat.className}`}>FEATURED FLOORPLANS</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {floorplans.map((plan) => (
-            <FloorplanCard key={plan.id} plan={plan} />
-          ))}
+        <h2 className={`text-3xl mb-8 pt-2 pb-2 text-center text-stone-600 font-semibold ${montserrat.className}`}>
+          FEATURED FLOORPLANS
+        </h2>
+        
+        <div className="relative flex items-center justify-center gap-4">
+          {/* Previous Button - positioned to the left */}
+          {!isXlView && (
+            <button 
+              onClick={prevSlide}
+              className="z-10 bg-white/80 hover:bg-white rounded-full p-2 shadow-md transition-all self-center"
+              aria-label="Previous floorplans"
+            >
+              <svg className="w-6 h-6 text-stone-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+          )}
+
+          {/* Floorplan Grid/Carousel */}
+          <div className={`grid ${
+            itemsToShow === 3 ? 'grid-cols-1 md:grid-cols-2 xl:grid-cols-3' : 
+            itemsToShow === 2 ? 'grid-cols-2' : 'grid-cols-1'
+          } gap-4 md:gap-6 xl:gap-8 w-full ${
+            itemsToShow === 1 ? 'max-w-md' : 
+            itemsToShow === 2 ? 'max-w-4xl' : 'max-w-7xl'
+          } mx-auto`}>
+            {visibleFloorplans.map((plan) => (
+              <div key={plan.id} className="transition-transform duration-300">
+                <FloorplanCard plan={plan} />
+              </div>
+            ))}
+          </div>
+
+          {/* Next Button - positioned to the right */}
+          {!isXlView && (
+            <button 
+              onClick={nextSlide}
+              className="z-10 bg-white/80 hover:bg-white rounded-full p-2 shadow-md transition-all self-center"
+              aria-label="Next floorplans"
+            >
+              <svg className="w-6 h-6 text-stone-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          )}
         </div>
+
+        {/* Mobile Indicators (only show when 1 item visible) */}
+        {itemsToShow === 1 && (
+          <div className="flex justify-center mt-6 space-x-2">
+            {floorplans.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`w-3 h-3 rounded-full ${currentIndex === index ? 'bg-stone-600' : 'bg-stone-400'}`}
+                aria-label={`Go to floorplan ${index + 1}`}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   )
