@@ -15,16 +15,19 @@ export default function NavBar() {
 
   const moreLinks = [
     { href: '/amenities', label: 'AMENITIES' },
-    { href: '/amenities#neighborhood', label: 'NEIGHBORHOOD' },
     { href: '/amenities#faq', label: 'FAQ' },
+    { href: '/amenities#neighborhood', label: 'NEIGHBORHOOD' },
     { href: '/amenities#reviews', label: 'REVIEWS' },
   ]
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
+      // Close More dropdown if clicking outside (desktop only)
       if (moreRef.current && !moreRef.current.contains(event.target as Node)) {
         setIsMoreOpen(false)
       }
+      
+      // Close entire mobile menu if clicking outside
       if (menuRef.current && !menuRef.current.contains(event.target as Node) && 
           !(event.target as HTMLElement).closest('button[aria-label="Toggle menu"]')) {
         setIsMenuOpen(false)
@@ -35,6 +38,11 @@ export default function NavBar() {
       const scrollTop = window.scrollY || document.documentElement.scrollTop
       setIsScrolled(scrollTop > 10)
       setIsAtTop(scrollTop === 0)
+      
+      // Close More dropdown on scroll (desktop behavior)
+      setIsMoreOpen(false)
+      
+      // Don't close mobile menu on scroll - keep it sticky
     }
 
     // Initialize scroll state
@@ -58,7 +66,7 @@ export default function NavBar() {
   const toggleMoreDropdown = (e: React.MouseEvent) => {
     e.stopPropagation()
     setIsMoreOpen(!isMoreOpen)
-    setIsMenuOpen(false)
+    // Don't close mobile menu here - only for desktop
   }
 
   const toggleMoreMobile = (e: React.MouseEvent) => {
@@ -81,6 +89,7 @@ export default function NavBar() {
             <span className={`text-stone-600 ${montserrat.className}`}>EVELYN</span>
           </Link>
           
+          {/* Desktop Navigation */}
           <div className="hidden md:flex gap-4 lg:gap-8 xl:gap-12 items-center">
             <Link href="/floorplans" className={`text-stone-600 ${montserrat.className} hover:text-blue-600 transition`}>
               FLOORPLANS
@@ -101,6 +110,7 @@ export default function NavBar() {
               CONTACT
             </Link>
             
+            {/* More dropdown - desktop */}
             <div className="relative" ref={moreRef}>
               <button
                 onClick={toggleMoreDropdown}
