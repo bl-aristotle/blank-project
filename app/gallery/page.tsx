@@ -15,7 +15,9 @@ type GalleryImage = {
 // This would be in a parent server component or fetched via API
 const mockImages: GalleryImage[] = [
     { id: "1", name: "Building Ground View", url: "/images/amenities/building-ant-view.jpeg", type: "AMENITY"  },
+    { id: "23", name: "Bedroom", url: "/images/amenities/bedroom.jpeg", type: "INTERIOR"  },
     { id: "2", name: "Building Ariel View", url: "/images/amenities/building-ariel.jpeg", type: "AMENITY"  },
+    { id: "22", name: "Bathroom", url: "/images/amenities/bathroom.jpeg", type: "INTERIOR"  },
     { id: "3", name: "Building Close Up", url: "/images/amenities/building-close-up.jpeg", type: "AMENITY"  },
     { id: "4", name: "Ground Entrance", url: "/images/amenities/ground-entrance.jpeg", type: "AMENITY"  },
     { id: "5", name: "Gym Runner", url: "/images/amenities/gym-runner.jpeg", type: "AMENITY"  },
@@ -36,10 +38,9 @@ const mockImages: GalleryImage[] = [
     { id: "20", name: "Yoga Room", url: "/images/amenities/yoga-room.jpeg", type: "AMENITY"  },
   
     // Interior (Units)
-    { id: "21", name: "Balcony Sunset", url: "/images/amenities/balcony-sunset.jpeg", type: "INTERIOR"  },
-    { id: "22", name: "Bathroom", url: "/images/amenities/bathroom.jpeg", type: "INTERIOR"  },
-    { id: "23", name: "Bedroom", url: "/images/amenities/bedroom.jpeg", type: "INTERIOR"  },
+  
     { id: "24", name: "Living Room", url: "/images/amenities/livingroom-couches.jpeg", type: "INTERIOR"  },
+    { id: "21", name: "Balcony Sunset", url: "/images/amenities/balcony-sunset.jpeg", type: "INTERIOR"  },
     { id: "25", name: "Unit Balcony", url: "/images/amenities/unit-balcony.jpeg", type: "INTERIOR"  },
     { id: "26", name: "Unit Kitchen", url: "/images/amenities/unit-kitchen.jpeg", type: "INTERIOR"  }
   ]
@@ -79,24 +80,25 @@ const mockImages: GalleryImage[] = [
   
           {/* Image Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {filteredImages.map((image, index) => (
-              <div 
-                key={image.id} 
-                className="group overflow-hidden rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-all"
-                onClick={() => openImage(index)}
-              >
-                <div className="relative aspect-square">
-                  <Image
-                    src={image.url}
-                    alt={image.name}
-                    fill
-                    className="object-cover transition-transform group-hover:scale-105"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
+  {filteredImages.map((image, index) => (
+    <div 
+      key={image.id} 
+      className="group overflow-hidden rounded-md shadow-md cursor-pointer hover:shadow-lg transition-all"
+      onClick={() => openImage(index)}
+    >
+      {/* Change this div */}
+      <div className="relative aspect-[3/2]">
+        <Image
+          src={image.url}
+          alt={image.name}
+          fill
+          className="object-cover transition-transform group-hover:scale-105"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        />
+      </div>
+    </div>
+  ))}
+</div>
         </div>
   
         {/* Carousel Modal */}

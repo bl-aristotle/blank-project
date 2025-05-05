@@ -20,7 +20,7 @@ export default function GalleryGrid({ floorplans }: { floorplans: GalleryFloorpl
           href={`/floorplans/${plan.id}`}
           className="group relative block overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all"
         >
-          <div className="aspect-square relative">
+          <div className="aspect-3/2 relative">
             <Image
               src={plan.imageUrl}
               alt={plan.name}
